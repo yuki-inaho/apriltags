@@ -15,7 +15,7 @@ Build the Apriltags C library. Keep in mind you need to have OpenCV installed be
 ```
 $ cd apriltags
 $ cmake .
-$ make
+$ make apriltag
 ```
 If building Apriltags was successful, you should be able to run the demo.
 
