@@ -81,6 +81,6 @@ install: dist ## install the package to the active Python's site-packages
 	pip install dist/*.whl -U
 
 submodule: ## build submodule
-	cmake -S apriltags-source -B apriltags-source
-	make -C apriltags-source/ apriltag
+	cd apriltags-source; cmake .
+	cd apriltags-source; make apriltag
 	cp apriltags-source/lib/* src/apriltags3/
