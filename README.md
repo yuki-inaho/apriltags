@@ -12,6 +12,8 @@ $ pip install pupil-apriltags3
 
 ### Installation from source
 
+Requires Python 3.6 or higher.
+
 Clone this repository and navigate in it. Then initialize the Apriltags submodule:
 
 ```sh
@@ -35,7 +37,7 @@ cmake .
 make apriltag
 cp lib/* ../src/apriltags3/
 cd ..
-pip install .
+pip3 install .
 ```
 
 #### Windows
