@@ -4,20 +4,43 @@ These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/
 
 ## How to get started:
 
+### Installation from PyPI
+
+```sh
+$ pip install pupil-apriltags3
+```
+
+### Installation from source
+
 Clone this repository and navigate in it. Then initialize the Apriltags submodule:
 
-```
+```sh
 $ git submodule init
 $ git submodule update
 ```
-Build the Apriltags C library. Keep in mind you need to have OpenCV installed beforehand.
 
+#### Unix
+
+On Unix systems, we automatically build
+
+```sh
+$ make install
 ```
-$ cd apriltags
-$ cmake .
-$ make apriltag
+
+##### Manual steps
+
+```sh
+cd apriltags-source
+cmake .
+make apriltag
+cp lib/* ../src/apriltags3/
+cd ..
+pip install .
 ```
-If building Apriltags was successful, you should be able to run the demo.
+
+#### Windows
+
+TODO
 
 ## Usage
 Some examples of usage can be seen in the `apriltags3.py` file.
