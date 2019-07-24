@@ -30,7 +30,7 @@ class BinaryDistribution(Distribution):
         return True
 
 
-source_folder = Path("src")
+source_folder = "src"
 packages = find_packages(where=source_folder)
 root_package = packages[0]
 
