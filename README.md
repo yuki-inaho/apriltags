@@ -40,9 +40,21 @@ cd ..
 pip3 install .
 ```
 
-#### Windows
+#### Windows (install from command prompt)
 
-TODO
+```bat
+:: Build apriltags-source library first
+cd apriltags-source
+build_windows.bat
+cd ..
+
+:: Copy DLL to python source
+copy /Y apriltags-source\lib\* src\apriltags3\
+
+:: Install python package
+pip install .
+```
+
 
 ## Usage
 Some examples of usage can be seen in the `apriltags3.py` file.
