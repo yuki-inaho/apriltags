@@ -1,5 +1,7 @@
 Original Apriltag code is:
 
+BSD-2-Clause
+
 (C) 2013-2015, The Regents of The University of Michigan
 
 All rights reserved.
@@ -33,7 +35,9 @@ either expressed or implied, of the FreeBSD Project.
 
 ---
 
-AprilTag bindings have been adapted from: (C) 2015-2018, Matt Zucker
+AprilTag bindings (BSD-2-Clause) have been adapted from:
+
+(C) 2015-2018, Matt Zucker
 
 All rights reserved.
 
