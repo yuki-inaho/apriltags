@@ -273,7 +273,7 @@ class Detector(object):
         )
         for hit in possible_hits:
             logger.debug(f"Testing possible hit: {hit}...")
-            self.libc = ctypes.CDLL(hit)
+            self.libc = ctypes.CDLL(str(hit))
             if self.libc:
                 logger.debug(f"Found working clib at {hit}")
                 break
