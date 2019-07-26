@@ -257,10 +257,12 @@ class Detector(object):
         self.params["debug"] = debug
 
         # detect OS to get extension for DLL
-        clib_ext_by_platform = {"Darwin": "dylib", "Linux": "so", "Windows": "dll"}
-        clib_ext = clib_ext_by_platform[platform.system()]
-
-        filename_pattern = f"libapriltag*.{clib_ext}"
+        filename_patterns_by_platform = {
+            "Darwin": "libapriltag*.dylib",
+            "Linux": "libapriltag*.so",
+            "Windows": "apriltag*.dll"
+        }
+        filename_pattern = filename_patterns_by_platform[platform.system()]
 
         self.libc = None
         self.tag_detector = None
