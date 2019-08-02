@@ -10,7 +10,7 @@ from pathlib import Path
 from setuptools import setup, find_packages
 from setuptools.dist import Distribution
 
-with open("README.rst") as readme_file:
+with open("README.md") as readme_file:
     readme = readme_file.read()
 
 with open("HISTORY.rst") as history_file:
@@ -56,7 +56,7 @@ setup(
     long_description=readme + "\n\n" + history,
     include_package_data=True,
     keywords="apriltags",
-    name="apriltags3",
+    name="pupil-apriltags3",
     packages=packages,
     package_dir={"": "src"},
     package_data={"apriltags3": [f"*.{clib_ext}"]},
