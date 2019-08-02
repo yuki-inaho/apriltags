@@ -1,6 +1,6 @@
-# apriltags3-py: Python bindings for the apriltags3 library
+# pupil-apriltags3: Python bindings for the apriltags3 library
 
-These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/apriltags) library developed by [AprilRobotics](https://april.eecs.umich.edu/). Inspired by the [Apriltags2 bindings](https://github.com/swatbotics/apriltag) by [Matt Zucker](https://github.com/mzucker).
+These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/apriltags) library developed by [AprilRobotics](https://april.eecs.umich.edu/), specifically adjusted to work with the pupil-labs software. The original bindings were provided by [duckietown](https://github.com/duckietown/apriltags3-py) and were inspired by the [Apriltags2 bindings](https://github.com/swatbotics/apriltag) by [Matt Zucker](https://github.com/mzucker).
 
 ## How to get started:
 
@@ -11,6 +11,8 @@ $ pip install pupil-apriltags3
 ```
 
 ### Installation from source
+
+Find the source code on GitHub: https://github.com/pupil-labs/apriltags
 
 Requires Python 3.6 or higher.
 
