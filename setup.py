@@ -56,7 +56,7 @@ setup(
     long_description=readme + "\n\n" + history,
     include_package_data=True,
     keywords="apriltags",
-    name="apriltags3",
+    name="pupil-apriltags3",
     packages=packages,
     package_dir={"": "src"},
     package_data={"apriltags3": [f"*.{clib_ext}"]},
