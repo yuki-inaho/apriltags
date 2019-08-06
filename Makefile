@@ -33,11 +33,13 @@ help:
 clean: clean-build clean-pyc clean-test clean-submodule ## remove all build, test, coverage and python3 artifacts
 
 clean-build: ## remove build artifacts
+	rm -fr _skbuild/
 	rm -fr build/
 	rm -fr dist/
 	rm -fr .eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
+	find . -name '*.so*' -exec rm -f {} +
 
 clean-pyc: ## remove python3 file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
