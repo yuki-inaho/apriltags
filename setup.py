@@ -12,6 +12,16 @@ from skbuild import setup
 from setuptools import find_packages
 from setuptools.dist import Distribution
 
+# https://github.com/skvark/opencv-python/blob/master/setup.py#L36-L42
+if os.path.exists(".git"):
+
+    import pip._internal.vcs.git as git
+
+    g = git.Git()  # NOTE: pip API's are internal, this has to be refactored
+
+    g.run_command(["submodule", "sync"])
+    g.run_command(["submodule", "update", "--init", "--recursive", "apriltags-source"])
+
 with open("README.md") as readme_file:
     readme = readme_file.read()
 
