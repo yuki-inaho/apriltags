@@ -6,12 +6,12 @@
 import pytest
 
 
-import apriltags3
+import pupil_apriltags
 
 
 @pytest.fixture
 def detector():
-    return apriltags3.Detector()
+    return pupil_apriltags.Detector()
 
 
 def test_detector_init(detector):

@@ -1,12 +1,9 @@
-include CONTRIBUTING.rst
-include HISTORY.rst
-include LICENSE
-include README.rst
+include LICENSE.md
+include README.md
+include CMakeLists.txt
 
 recursive-include tests *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 
-recursive-include *.rst conf.py Makefile make.bat *.jpg *.png *.gif
-
-include src/apriltags3/*.so src/apriltags3/*.dylib src/apriltags3/*.dll
+recursive-include apriltags-source *
