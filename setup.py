@@ -44,8 +44,14 @@ packages = find_packages(where=source_folder)
 root_package = packages[0]
 
 root_folder = Path(__file__).parent
+
 clib_ext_by_platform = {"Darwin": "dylib", "Linux": "so", "Windows": "dll"}
 clib_ext = clib_ext_by_platform[platform.system()]
+
+cmake_args=[]
+if platform.system() == "Windows":
+    cmake_args.append("-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=True")
+
 
 setup(
     author="Pupil Labs GmbH",
@@ -76,4 +82,5 @@ setup(
     version="1",
     zip_safe=False,
     cmake_install_dir="src/pupil_apriltags",
+    cmake_args=cmake_args,
 )
