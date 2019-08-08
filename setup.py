@@ -79,7 +79,7 @@ setup(
     test_suite="tests",
     tests_require=test_requirements,
     url="https://github.com/pupil-labs/apriltags",
-    version="1",
+    version="1.dev0",
     zip_safe=False,
     cmake_install_dir="src/pupil_apriltags",
     cmake_args=cmake_args,

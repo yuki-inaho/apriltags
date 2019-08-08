@@ -1,61 +1,29 @@
-# pupil-apriltags3: Python bindings for the apriltags3 library
+# pupil-apriltags: Python bindings for the apriltags3 library
 
 These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/apriltags) library developed by [AprilRobotics](https://april.eecs.umich.edu/), specifically adjusted to work with the pupil-labs software. The original bindings were provided by [duckietown](https://github.com/duckietown/apriltags3-py) and were inspired by the [Apriltags2 bindings](https://github.com/swatbotics/apriltag) by [Matt Zucker](https://github.com/mzucker).
 
 ## How to get started:
 
-### Installation from PyPI
+### Install from PyPI
+
+This is the recommended and easiest way to install pupil-apriltags.
 
 ```sh
-$ pip install pupil-apriltags3
+$ pip install pupil-apriltags
 ```
 
-### Installation from source
+We offer pre-built binary wheels for common operating systems.
+In case your system does not match, the installation might take some time, since the native library (apriltags-source) will be compiled first.
 
-Find the source code on GitHub: https://github.com/pupil-labs/apriltags
-
-Requires Python 3.6 or higher.
-
-Clone this repository and navigate in it. Then initialize the Apriltags submodule:
+### Install from source via current master branch from GitHub
 
 ```sh
-$ git submodule init
-$ git submodule update
+$ pip install git+https://github.com/pupil-labs/apriltags
 ```
 
-#### Unix
+### Manual installation from source
 
-On Unix systems, we automatically build
-
-```sh
-$ make install
-```
-
-##### Manual steps
-
-```sh
-cd apriltags-source
-cmake .
-make apriltag
-cp lib/* ../src/apriltags3/
-cd ..
-pip3 install .
-```
-
-#### Windows (install from command prompt)
-
-```bat
-:: Build apriltags-source library first
-cd apriltags-source
-build_windows.bat
-cd ..
-
-:: Copy DLL to python source
-copy /Y apriltags-source\lib\* src\apriltags3\
-
-:: Install python package
-pip install .
-```
+You can of course manually clone the repository and build from there. We use [scikit-build](https://scikit-build.readthedocs.io/en/latest/skbuild.html) instead of the normal python setuptools, since skbuild makes working with native libraries a lot easier. Building is still controlled via standard `python setup.py [options]` commands, but skbuild takes care of platform-independently compiling apriltags-source in the background.
 
 
 ## Usage
