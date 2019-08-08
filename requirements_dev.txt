@@ -1,4 +1,7 @@
-pip==19.2
+pip==19.2.1
+cmake==3.14.4
+scikit-build==0.10.0
+ninja==1.9.0.post1
 bumpversion==0.5.3
 wheel==0.32.1
 flake8==3.5.0

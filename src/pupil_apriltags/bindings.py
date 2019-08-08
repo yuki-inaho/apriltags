@@ -243,7 +243,7 @@ class Detector(object):
         refine_edges=1,
         decode_sharpening=0.25,
         debug=0,
-        searchpath=(Path(__file__).parent,),
+        searchpath=(Path(__file__).parent / "lib",),
     ):
 
         # Parse the parameters
@@ -260,7 +260,7 @@ class Detector(object):
         filename_patterns_by_platform = {
             "Darwin": "libapriltag*.dylib",
             "Linux": "libapriltag*.so",
-            "Windows": "apriltag*.dll"
+            "Windows": "apriltag*.dll",
         }
         filename_pattern = filename_patterns_by_platform[platform.system()]
 

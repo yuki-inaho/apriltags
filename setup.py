@@ -3,19 +3,31 @@
 
 """The setup script."""
 
+import os
 import platform
 import shutil
 from pathlib import Path
 
-from setuptools import setup, find_packages
+from skbuild import setup
+from setuptools import find_packages
 from setuptools.dist import Distribution
+
+# https://github.com/skvark/opencv-python/blob/master/setup.py#L36-L42
+if os.path.exists(".git"):
+
+    import pip._internal.vcs.git as git
+
+    g = git.Git()  # NOTE: pip API's are internal, this has to be refactored
+
+    g.run_command(["submodule", "sync"])
+    g.run_command(["submodule", "update", "--init", "--recursive", "apriltags-source"])
 
 with open("README.md") as readme_file:
     readme = readme_file.read()
 
 requirements = ["numpy"]
 
-setup_requirements = ["pytest-runner"]
+setup_requirements = ["scikit-build", "ninja", "pytest-runner"]
 
 test_requirements = ["pytest"]
 
@@ -32,8 +44,14 @@ packages = find_packages(where=source_folder)
 root_package = packages[0]
 
 root_folder = Path(__file__).parent
+
 clib_ext_by_platform = {"Darwin": "dylib", "Linux": "so", "Windows": "dll"}
 clib_ext = clib_ext_by_platform[platform.system()]
+
+cmake_args=[]
+if platform.system() == "Windows":
+    cmake_args.append("-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=True")
+
 
 setup(
     author="Pupil Labs GmbH",
@@ -47,21 +65,22 @@ setup(
         "Programming Language :: Python :: 3.7",
     ],
     description="Python bindings for apriltags v3",
-    distclass=BinaryDistribution,
+    # distclass=BinaryDistribution,
     install_requires=requirements,
     license="MIT license",
     long_description=readme,
     long_description_content_type="text/markdown",
     include_package_data=True,
     keywords="apriltags",
-    name="pupil-apriltags3",
+    name="pupil-apriltags",
     packages=packages,
     package_dir={"": "src"},
-    package_data={"apriltags3": [f"*.{clib_ext}"]},
     setup_requires=setup_requirements,
     test_suite="tests",
     tests_require=test_requirements,
     url="https://github.com/pupil-labs/apriltags",
     version="1",
     zip_safe=False,
+    cmake_install_dir="src/pupil_apriltags",
+    cmake_args=cmake_args,
 )
