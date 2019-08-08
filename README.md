@@ -7,7 +7,7 @@ These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/
 ### Installation from PyPI
 
 ```sh
-$ pip install pupil-apriltags3
+$ pip install pupil-apriltags
 ```
 
 ### Installation from source
