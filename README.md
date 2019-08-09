@@ -1,65 +1,26 @@
-# pupil-apriltags3: Python bindings for the apriltags3 library
+# pupil-apriltags: Python bindings for the apriltags3 library
 
 These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/apriltags) library developed by [AprilRobotics](https://april.eecs.umich.edu/), specifically adjusted to work with the pupil-labs software. The original bindings were provided by [duckietown](https://github.com/duckietown/apriltags3-py) and were inspired by the [Apriltags2 bindings](https://github.com/swatbotics/apriltag) by [Matt Zucker](https://github.com/mzucker).
 
 ## How to get started:
 
-### Installation from PyPI
+### Installation from source via pip
+
+This is the recommended and easiest way to install pupil-apriltags.
 
 ```sh
-$ pip install pupil-apriltags
+$ pip install git+https://github.com/pupil-labs/apriltags
 ```
 
-### Installation from source
+Installation can take some time, since the native library (apriltags-source) will be compiled first.
 
-Find the source code on GitHub: https://github.com/pupil-labs/apriltags
+### Manual installation from source
 
-Requires Python 3.6 or higher.
-
-Clone this repository and navigate in it. Then initialize the Apriltags submodule:
-
-```sh
-$ git submodule init
-$ git submodule update
-```
-
-#### Unix
-
-On Unix systems, we automatically build
-
-```sh
-$ make install
-```
-
-##### Manual steps
-
-```sh
-cd apriltags-source
-cmake .
-make apriltag
-cp lib/* ../src/apriltags3/
-cd ..
-pip3 install .
-```
-
-#### Windows (install from command prompt)
-
-```bat
-:: Build apriltags-source library first
-cd apriltags-source
-build_windows.bat
-cd ..
-
-:: Copy DLL to python source
-copy /Y apriltags-source\lib\* src\apriltags3\
-
-:: Install python package
-pip install .
-```
+You can of course manually clone the repository and build from there. We use [scikit-build](https://scikit-build.readthedocs.io/en/latest/skbuild.html) instead of the normal python setuptools, since skbuild makes working with native libraries a lot easier. Building is still controlled via standard `python setup.py [options]` commands, but skbuild takes care of platform-independently compiling apriltags-source in the background.
 
 
 ## Usage
-Some examples of usage can be seen in the `apriltags3.py` file.
+Some examples of usage can be seen in the `src/pupil_apriltags/bindings.py` file.
 
 The `Detector` class is a wrapper around the Apriltags functionality. You can initialize it as following:
 
