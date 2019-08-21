@@ -27,7 +27,7 @@ You can of course manually clone the repository and build from there. We use [sc
 
 
 ## Usage
-Some examples of usage can be seen in the `apriltags3.py` file.
+Some examples of usage can be seen in the `src/pupil_apriltags/bindings.py` file.
 
 The `Detector` class is a wrapper around the Apriltags functionality. You can initialize it as following:
 
