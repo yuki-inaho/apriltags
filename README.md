@@ -31,7 +31,7 @@ Some examples of usage can be seen in the `src/pupil_apriltags/bindings.py` file
 
 The `Detector` class is a wrapper around the Apriltags functionality. You can initialize it as following:
 
-```
+```python
 from pupil_apriltags import Detector
 
 at_detector = Detector(searchpath=['apriltags'],
@@ -59,7 +59,7 @@ The options are:
 
 Detection of tags in images is done by running the `detect` method of the detector:
 
-```
+```python
 tags = at_detector.detect(img, estimate_tag_pose=False, camera_params=None, tag_size=None)
 ```
 
