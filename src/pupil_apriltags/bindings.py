@@ -243,7 +243,7 @@ class Detector(object):
         refine_edges=1,
         decode_sharpening=0.25,
         debug=0,
-        searchpath=(Path(__file__).parent / "lib",),
+        searchpath=(Path(__file__).parent / "lib", Path(__file__).parent / "lib64"),
     ):
 
         # Parse the parameters
@@ -259,8 +259,8 @@ class Detector(object):
         # detect OS to get extension for DLL
         filename_patterns_by_platform = {
             "Darwin": "libapriltag*.dylib",
-            "Linux": "libapriltag*.so",
-            "Windows": "apriltag*.dll",
+            "Linux": "libapriltag*.so*",
+            "Windows": "*apriltag*.dll",
         }
         filename_pattern = filename_patterns_by_platform[platform.system()]
 

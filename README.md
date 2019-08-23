@@ -4,15 +4,22 @@ These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/
 
 ## How to get started:
 
-### Installation from source via pip
+### Install from PyPI
 
 This is the recommended and easiest way to install pupil-apriltags.
 
 ```sh
-$ pip install git+https://github.com/pupil-labs/apriltags
+$ pip install pupil-apriltags
 ```
 
-Installation can take some time, since the native library (apriltags-source) will be compiled first.
+We offer pre-built binary wheels for common operating systems.
+In case your system does not match, the installation might take some time, since the native library (apriltags-source) will be compiled first.
+
+### Install from source via current master branch from GitHub
+
+```sh
+$ pip install git+https://github.com/pupil-labs/apriltags
+```
 
 ### Manual installation from source
 
