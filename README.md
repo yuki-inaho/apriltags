@@ -1,5 +1,7 @@
 # pupil-apriltags: Python bindings for the apriltags3 library
 
+[![Build Status](https://travis-ci.org/pupil-labs/apriltags.svg?branch=master)](https://travis-ci.org/pupil-labs/apriltags)
+
 These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/apriltags) library developed by [AprilRobotics](https://april.eecs.umich.edu/), specifically adjusted to work with the pupil-labs software. The original bindings were provided by [duckietown](https://github.com/duckietown/apriltags3-py) and were inspired by the [Apriltags2 bindings](https://github.com/swatbotics/apriltag) by [Matt Zucker](https://github.com/mzucker).
 
 ## How to get started:
