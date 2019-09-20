@@ -40,11 +40,14 @@ win_base_job: &win_base_job
   os: windows
   language: sh
   before_install:
+    # vcredist2010 is required for loading the apriltags.dll when building with msvc.
+    # I don't know why exactly, but loading the DLL will fail otherwise on travis.
+    - choco install vcredist2010
     - choco install python --version $PYTHON_VERSION
     - python -m pip install --upgrade pip
   install:
-    - pip install -r requirements_dev.txt
-    - python ./setup.py bdist_wheel
+    - python -m pip install -r requirements_dev.txt
+    - python ./setup.py bdist_wheel -G "Visual Studio 15 2017 Win64"
 
 ubuntu_base_job: &ubuntu_base_job
   os: linux
