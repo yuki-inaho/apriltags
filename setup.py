@@ -42,6 +42,10 @@ cmake_args = []
 if platform.system() == "Windows":
     cmake_args.append("-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=True")
 
+    import pupil_pthreads_win as ptw
+    cmake_args.append(f"-DPTHREADS_WIN_INCLUDE_DIR='{ptw.include_path}'")
+    cmake_args.append(f"-DPTHREADS_WIN_IMPORT_LIB_PATH='{ptw.import_lib_path}'")
+
 
 setup(
     author="Pupil Labs GmbH",
