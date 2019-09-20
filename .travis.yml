@@ -47,6 +47,8 @@ win_base_job: &win_base_job
     - python -m pip install --upgrade pip
   install:
     - python -m pip install -r requirements_dev.txt
+    # Specify skbuild generator explicitly in order to use msvc compiler, otherwise we
+    # default to mingw (gcc) on travis!
     - python ./setup.py bdist_wheel -G "Visual Studio 15 2017 Win64"
 
 ubuntu_base_job: &ubuntu_base_job
