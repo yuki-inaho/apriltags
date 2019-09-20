@@ -1,7 +1,3 @@
-__version__ = "1.dev0"
-
-import logging
-
-logger = logging.getLogger(__name__)
+__version__ = "0.dev0"
 
 from .bindings import Detector, Detection
