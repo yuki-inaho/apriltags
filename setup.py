@@ -15,7 +15,9 @@ from setuptools.dist import Distribution
 with open("README.md") as readme_file:
     readme = readme_file.read()
 
-requirements = ["numpy", "pupil-pthreads-win"]
+requirements = ["numpy"]
+if platform.system() == "Windows":
+    requirements.append("pupil-pthreads-win")
 
 setup_requirements = ["scikit-build", "ninja", "pytest-runner"]
 
