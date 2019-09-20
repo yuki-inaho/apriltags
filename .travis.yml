@@ -2,7 +2,7 @@
 # ENVIRONMENT TEMPLATES
 ################################################################################
 
-# can't merge arrays in YAML so we have to duplicate stuff between 36 adn 37
+# can't merge arrays in YAML so we have to duplicate stuff between 36 and 37
 # and include all variables that are relevant across all operating systems
 env_py36: &env_py36
   env:
