@@ -31,10 +31,10 @@ osx_base_job: &osx_base_job
     - pyenv install -s $PYTHON_VERSION
     - export PYENV_VERSION=$PYTHON_VERSION
     - export PATH="/Users/travis/.pyenv/shims:${PATH}"
-    - pip3 install --upgrade pip
+    - pip3 install -U pip
   install:
-    - pip3 install -r requirements_dev.txt
-    - python3 ./setup.py bdist_wheel
+    - pip3 wheel --no-deps -w dist/ .
+    - pip3 install tox
 
 win_base_job: &win_base_job
   os: windows
@@ -44,10 +44,10 @@ win_base_job: &win_base_job
     # I don't know why exactly, but loading the DLL will fail otherwise on travis.
     - choco install vcredist2010
     - choco install python --version $PYTHON_VERSION
-    - python -m pip install --upgrade pip
+    - python -m pip install -U pip
   install:
-    - python -m pip install -r requirements_dev.txt
-    - python ./setup.py bdist_wheel
+    - python -m pip wheel --no-deps -w dist/ .
+    - python -m pip install tox
 
 ubuntu_base_job: &ubuntu_base_job
   os: linux
@@ -76,8 +76,8 @@ ubuntu_trusty_base_job: &ubuntu_trusty_base_job
     # NOTE: does not work for 3.7.4 out of the box currently!
     - pyenv install -s $PYTHON_VERSION
     - pyenv global $PYTHON_VERSION
-    - pip3 install --upgrade pip
-    - pip3 install -r requirements_dev.txt
+    - pip3 install -U pip
+    - pip3 install tox
 
 ubuntu_bionic_base_job: &ubuntu_bionic_base_job
   <<: *ubuntu_base_job
@@ -85,8 +85,8 @@ ubuntu_bionic_base_job: &ubuntu_bionic_base_job
   # bionic has newest python available via travis
   language: python
   before_script:
-    - pip3 install --upgrade pip
-    - pip3 install -r requirements_dev.txt
+    - pip3 install -U pip
+    - pip3 install tox
   
 
 ################################################################################

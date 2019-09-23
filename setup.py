@@ -15,13 +15,10 @@ from setuptools.dist import Distribution
 with open("README.md") as readme_file:
     readme = readme_file.read()
 
-requirements = ["numpy"]
+install_requires = ["numpy"]
+
 if platform.system() == "Windows":
-    requirements.append("pupil-pthreads-win")
-
-setup_requirements = ["scikit-build", "ninja", "pytest-runner"]
-
-test_requirements = ["pytest"]
+    install_requires.append("pupil-pthreads-win")
 
 
 class BinaryDistribution(Distribution):
@@ -68,7 +65,7 @@ setup(
     ],
     description="Python bindings for apriltags v3",
     # distclass=BinaryDistribution,
-    install_requires=requirements,
+    install_requires=install_requires,
     license="MIT license",
     long_description=readme,
     long_description_content_type="text/markdown",
@@ -77,9 +74,7 @@ setup(
     name="pupil-apriltags",
     packages=packages,
     package_dir={"": "src"},
-    setup_requires=setup_requirements,
     test_suite="tests",
-    tests_require=test_requirements,
     url="https://github.com/pupil-labs/apriltags",
     version="0.dev0",
     zip_safe=False,
