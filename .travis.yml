@@ -33,8 +33,8 @@ osx_base_job: &osx_base_job
     - export PATH="/Users/travis/.pyenv/shims:${PATH}"
     - pip3 install -U pip
   install:
-    - pip3 wheel --no-deps -w dist/ .
-    - pip3 install tox
+    - pip3 install pep517 tox
+    - python3 -m pep517.build .
 
 win_base_job: &win_base_job
   os: windows
@@ -46,8 +46,8 @@ win_base_job: &win_base_job
     - choco install python --version $PYTHON_VERSION
     - python -m pip install -U pip
   install:
-    - python -m pip wheel --no-deps -w dist/ .
-    - python -m pip install tox
+    - python -m pip install pep517 tox
+    - python -m pep517.build .
 
 ubuntu_base_job: &ubuntu_base_job
   os: linux

@@ -6,7 +6,8 @@ export PATH=/opt/python/cp"$1"-cp"$1"m/bin:$PATH
 
 cd /io
 pip install -U pip
-pip wheel --no-deps -w /io/dist/ .
+pip install pep517
+python -m pep517.build .
 
 for whl in /io/dist/*.whl; do
     auditwheel repair "$whl" --plat manylinux2010_x86_64 -w /io/dist/
