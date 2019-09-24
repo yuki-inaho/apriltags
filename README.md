@@ -9,7 +9,7 @@ These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/
 This is the recommended and easiest way to install pupil-apriltags.
 
 ```sh
-$ pip install pupil-apriltags
+pip install pupil-apriltags
 ```
 
 We offer pre-built binary wheels for common operating systems.
