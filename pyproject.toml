@@ -3,7 +3,7 @@ requires = [
     "setuptools",
     "wheel",
     "scikit-build",
-    "cmake",
+    "cmake==3.14.4", # 3.15 is missing wheels for mac and crashes on install
     "ninja",
     "pupil-pthreads-win"
 ]
