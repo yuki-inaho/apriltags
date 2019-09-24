@@ -2,7 +2,7 @@
 
 pip install twine || pip3 install twine 
 twine upload \
-    --username "pupil-labs" \
-    --password "$PyPIPassword" \
+    --username "__token__" \
+    --password "$PYPI_APITOKEN" \
     --skip-existing \
     ./dist/*
