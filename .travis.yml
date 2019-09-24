@@ -2,7 +2,7 @@
 # ENVIRONMENT TEMPLATES
 ################################################################################
 
-# can't merge arrays in YAML so we have to duplicate stuff between 36 adn 37
+# can't merge arrays in YAML so we have to duplicate stuff between 36 and 37
 # and include all variables that are relevant across all operating systems
 env_py36: &env_py36
   env:
@@ -24,27 +24,30 @@ env_py37: &env_py37
 
 osx_base_job: &osx_base_job
   os: osx
-  osx_image: xcode6.4
+  osx_image: xcode8.3
   language: sh
   before_install:
-    - brew update && brew upgrade pyenv
+    - brew upgrade pyenv
     - pyenv install -s $PYTHON_VERSION
     - export PYENV_VERSION=$PYTHON_VERSION
     - export PATH="/Users/travis/.pyenv/shims:${PATH}"
-    - pip3 install --upgrade pip
+    - pip3 install -U pip
   install:
-    - pip3 install -r requirements_dev.txt
-    - python3 ./setup.py bdist_wheel
+    - pip3 install pep517 tox
+    - python3 -m pep517.build .
 
 win_base_job: &win_base_job
   os: windows
   language: sh
   before_install:
+    # vcredist2010 is required for loading the apriltags.dll when building with msvc.
+    # I don't know why exactly, but loading the DLL will fail otherwise on travis.
+    - choco install vcredist2010
     - choco install python --version $PYTHON_VERSION
-    - python -m pip install --upgrade pip
+    - python -m pip install -U pip
   install:
-    - pip install -r requirements_dev.txt
-    - python ./setup.py bdist_wheel
+    - python -m pip install pep517 tox
+    - python -m pep517.build .
 
 ubuntu_base_job: &ubuntu_base_job
   os: linux
@@ -73,8 +76,8 @@ ubuntu_trusty_base_job: &ubuntu_trusty_base_job
     # NOTE: does not work for 3.7.4 out of the box currently!
     - pyenv install -s $PYTHON_VERSION
     - pyenv global $PYTHON_VERSION
-    - pip3 install --upgrade pip
-    - pip3 install -r requirements_dev.txt
+    - pip3 install -U pip
+    - pip3 install tox
 
 ubuntu_bionic_base_job: &ubuntu_bionic_base_job
   <<: *ubuntu_base_job
@@ -82,8 +85,8 @@ ubuntu_bionic_base_job: &ubuntu_bionic_base_job
   # bionic has newest python available via travis
   language: python
   before_script:
-    - pip3 install --upgrade pip
-    - pip3 install -r requirements_dev.txt
+    - pip3 install -U pip
+    - pip3 install tox
   
 
 ################################################################################
@@ -92,11 +95,11 @@ ubuntu_bionic_base_job: &ubuntu_bionic_base_job
 
 matrix:
   include:
-    - name: "Python 3.6.8 on OSX 10.10 (xcode6.4)"
+    - name: "Python 3.6.8 on OSX 10.12 (xcode8.3)"
       <<: *osx_base_job
       <<: *env_py36
 
-    - name: "Python 3.7.4 on OSX 10.10 (xcode6.4)"
+    - name: "Python 3.7.4 on OSX 10.12 (xcode8.3)"
       <<: *osx_base_job
       <<: *env_py37
 
@@ -141,7 +144,7 @@ deploy:
     <<: *deploy_template
     api_key: $GitHubOAUTH
     file_glob: true
-    file: "./dist/pupil_apriltags*.whl"
+    file: "./dist/pupil_apriltags*"
   - provider: script
     <<: *deploy_template
     script: bash ./.travis/pypi_deploy.sh

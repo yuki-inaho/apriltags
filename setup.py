@@ -1,47 +1,30 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-"""The setup script."""
-
-import os
 import platform
-import shutil
-from pathlib import Path
+
+from setuptools import find_packages
 
 from skbuild import setup
-from setuptools import find_packages
-from setuptools.dist import Distribution
-
-with open("README.md") as readme_file:
-    readme = readme_file.read()
-
-requirements = ["numpy"]
-
-setup_requirements = ["scikit-build", "ninja", "pytest-runner"]
-
-test_requirements = ["pytest"]
-
-
-class BinaryDistribution(Distribution):
-    """Distribution which always forces a binary package with platform name"""
-
-    def has_ext_modules(self):
-        return True
-
 
 source_folder = "src"
 packages = find_packages(where=source_folder)
-root_package = packages[0]
 
-root_folder = Path(__file__).parent
-
-clib_ext_by_platform = {"Darwin": "dylib", "Linux": "so", "Windows": "dll"}
-clib_ext = clib_ext_by_platform[platform.system()]
+install_requires = ["numpy"]
+if platform.system() == "Windows":
+    install_requires.append("pupil-pthreads-win")
 
 cmake_args = []
 if platform.system() == "Windows":
+    import pupil_pthreads_win as ptw
+
+    cmake_args.append(f"-DPTHREADS_WIN_INCLUDE_DIR='{ptw.include_path}'")
+    cmake_args.append(f"-DPTHREADS_WIN_IMPORT_LIB_PATH='{ptw.import_lib_path}'")
+    # The Ninja cmake generator will use mingw (gcc) on windows travis instances, but we
+    # need to use msvc for compatibility. The easiest solution I found was to just use
+    # the vs cmake generator as it defaults to msvc.
+    cmake_args.append("-GVisual Studio 15 2017 Win64")
     cmake_args.append("-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=True")
 
+with open("README.md") as readme_file:
+    readme = readme_file.read()
 
 setup(
     author="Pupil Labs GmbH",
@@ -54,9 +37,11 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
+    cmake_args=cmake_args,
+    cmake_install_dir="src/pupil_apriltags",
     description="Python bindings for apriltags v3",
-    # distclass=BinaryDistribution,
-    install_requires=requirements,
+    extras_require={"dev": ["pytest", "tox"]},
+    install_requires=install_requires,
     license="MIT license",
     long_description=readme,
     long_description_content_type="text/markdown",
@@ -65,12 +50,8 @@ setup(
     name="pupil-apriltags",
     packages=packages,
     package_dir={"": "src"},
-    setup_requires=setup_requirements,
     test_suite="tests",
-    tests_require=test_requirements,
     url="https://github.com/pupil-labs/apriltags",
-    version="1.dev0",
+    version="0.dev0",
     zip_safe=False,
-    cmake_install_dir="src/pupil_apriltags",
-    cmake_args=cmake_args,
 )

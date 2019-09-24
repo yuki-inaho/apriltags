@@ -11,22 +11,27 @@ These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/
 This is the recommended and easiest way to install pupil-apriltags.
 
 ```sh
-$ pip install pupil-apriltags
+pip install pupil-apriltags
 ```
 
 We offer pre-built binary wheels for common operating systems.
 In case your system does not match, the installation might take some time, since the native library (apriltags-source) will be compiled first.
 
-### Install from source via current master branch from GitHub
+### Manual installation from source (for development)
+
+You can of course clone the repository and build from there. For development you should install the development requirements as well. This project uses the new python build system configuration from [PEP 517](https://www.python.org/dev/peps/pep-0517/) and [PEP 518](https://www.python.org/dev/peps/pep-0518/).
 
 ```sh
-$ pip install git+https://github.com/pupil-labs/apriltags
+# clone the repository
+git clone https://github.com/pupil-labs/apriltags.git
+cd apriltags
+
+# install apriltags in editable mode with development requirements
+pip install -e .[dev]
+
+# run tests
+tox
 ```
-
-### Manual installation from source
-
-You can of course manually clone the repository and build from there. We use [scikit-build](https://scikit-build.readthedocs.io/en/latest/skbuild.html) instead of the normal python setuptools, since skbuild makes working with native libraries a lot easier. Building is still controlled via standard `python setup.py [options]` commands, but skbuild takes care of platform-independently compiling apriltags-source in the background.
-
 
 ## Usage
 Some examples of usage can be seen in the `src/pupil_apriltags/bindings.py` file.
