@@ -17,15 +17,15 @@ In case your system does not match, the installation might take some time, since
 
 ### Manual installation from source (for development)
 
-You can of course clone the repository and build from there. For development you should install the development requirements as well. This project uses the new python build system configuration from [PEP517](https://www.python.org/dev/peps/pep-0517/) and [PEP518](https://www.python.org/dev/peps/pep-0518/).
+You can of course clone the repository and build from there. For development you should install the development requirements as well. This project uses the new python build system configuration from [PEP 517](https://www.python.org/dev/peps/pep-0517/) and [PEP 518](https://www.python.org/dev/peps/pep-0518/).
 
 ```sh
 # clone the repository
 git clone https://github.com/pupil-labs/apriltags.git
 cd apriltags
 
-# install apriltags with development requirements
-pip install .[dev]
+# install apriltags in editable mode with development requirements
+pip install -e .[dev]
 
 # run tests
 tox
