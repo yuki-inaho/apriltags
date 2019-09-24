@@ -144,7 +144,7 @@ deploy:
     <<: *deploy_template
     api_key: $GitHubOAUTH
     file_glob: true
-    file: "./dist/pupil_apriltags*.whl"
+    file: "./dist/pupil_apriltags*"
   - provider: script
     <<: *deploy_template
     script: bash ./.travis/pypi_deploy.sh
