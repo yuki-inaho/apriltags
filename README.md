@@ -9,6 +9,8 @@ These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/
 
 ## How to get started:
 
+Note that **pupil-apriltags** currently only runs on Python 3.6 or higher.
+
 ### Install from PyPI
 
 This is the recommended and easiest way to install pupil-apriltags.
