@@ -9,7 +9,15 @@ These are Python bindings for the [Apriltags3](https://github.com/AprilRobotics/
 
 ## How to get started:
 
+### Requirements
+
 Note that **pupil-apriltags** currently only runs on Python 3.6 or higher.
+
+Also we are using a newer python build system, which can fail for older versions of pip with potentially misleading errors.
+Please make sure you are using pip > 19 or consider upgrading pip to the latest version to be on the safe side:
+```bash
+python -m pip install --upgrade pip
+```
 
 ### Install from PyPI
 
