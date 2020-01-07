@@ -1,6 +1,4 @@
 import platform
-import re
-from pathlib import Path
 
 from skbuild import setup
 
