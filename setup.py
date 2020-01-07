@@ -1,6 +1,4 @@
 import platform
-import re
-from pathlib import Path
 
 from skbuild import setup
 
@@ -23,8 +21,13 @@ if platform.system() == "Windows":
     cmake_args.append("-GVisual Studio 15 2017 Win64")
     cmake_args.append("-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=True")
 
-with open("README.md") as readme_file:
-    readme = readme_file.read()
+with open("README.md") as f:
+    readme = f.read()
+
+with open("CHANGELOG.md") as f:
+    changelog = f.read()
+
+long_description = f"{readme}\n\n{changelog}"
 
 setup(
     author="Pupil Labs GmbH",
@@ -43,7 +46,7 @@ setup(
     extras_require={"dev": ["pytest", "tox", "bump2version"]},
     install_requires=install_requires,
     license="MIT license",
-    long_description=readme,
+    long_description=long_description,
     long_description_content_type="text/markdown",
     include_package_data=True,
     keywords="apriltags",
