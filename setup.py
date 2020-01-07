@@ -40,7 +40,7 @@ setup(
     cmake_args=cmake_args,
     cmake_install_dir="src/pupil_apriltags",
     description="Python bindings for apriltags v3",
-    extras_require={"dev": ["pytest", "tox"]},
+    extras_require={"dev": ["pytest", "tox", "bump2version"]},
     install_requires=install_requires,
     license="MIT license",
     long_description=readme,
