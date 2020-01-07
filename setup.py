@@ -26,18 +26,6 @@ if platform.system() == "Windows":
 with open("README.md") as readme_file:
     readme = readme_file.read()
 
-
-def read_version(path: Path):
-    with path.open() as f:
-        version_file = f.read()
-    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
-    if version_match:
-        return version_match.group(1)
-    raise RuntimeError("Unable to find version string.")
-
-
-here = Path(__file__).parent
-
 setup(
     author="Pupil Labs GmbH",
     author_email="pypi@pupil-labs.com",
@@ -64,6 +52,6 @@ setup(
     package_dir={"": package_dir},
     test_suite="tests",
     url="https://github.com/pupil-labs/apriltags",
-    version=read_version(here / package_dir / package / "__init__.py"),
+    version="1.0.0",
     zip_safe=False,
 )
