@@ -55,6 +55,6 @@ setup(
     package_dir={"": package_dir},
     test_suite="tests",
     url="https://github.com/pupil-labs/apriltags",
-    version="1.0.0",
+    version="1.0.1",
     zip_safe=False,
 )
