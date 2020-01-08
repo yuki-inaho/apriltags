@@ -143,6 +143,9 @@ deploy_template: &deploy_template
     branch: test-osx-deployment
   skip_cleanup: true
 
+before_deploy:
+  - brew install openssl@1.0.0
+
 deploy:
   - provider: releases
     <<: *deploy_template
