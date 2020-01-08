@@ -27,7 +27,11 @@ osx_base_job: &osx_base_job
   osx_image: xcode8.3
   language: sh
   before_install:
+    - brew list --versions
+    - brew cask list --versions
     - brew upgrade pyenv
+    - brew list --versions
+    - brew cask list --versions
     - pyenv install -s $PYTHON_VERSION
     - export PYENV_VERSION=$PYTHON_VERSION
     - export PATH="/Users/travis/.pyenv/shims:${PATH}"
@@ -99,31 +103,31 @@ matrix:
       <<: *osx_base_job
       <<: *env_py36
 
-    - name: "Python 3.7.4 on OSX 10.12 (xcode8.3)"
-      <<: *osx_base_job
-      <<: *env_py37
+    # - name: "Python 3.7.4 on OSX 10.12 (xcode8.3)"
+    #   <<: *osx_base_job
+    #   <<: *env_py37
 
-    - name: "Python 3.6.8 on Windows"
-      <<: *win_base_job
-      <<: *env_py36
+    # - name: "Python 3.6.8 on Windows"
+    #   <<: *win_base_job
+    #   <<: *env_py36
     
-    - name: "Python 3.7.4 on Windows"
-      <<: *win_base_job
-      <<: *env_py37
+    # - name: "Python 3.7.4 on Windows"
+    #   <<: *win_base_job
+    #   <<: *env_py37
 
-    - name: "Python 3.6.8 on Ubuntu 14.04 (using manylinux wheel)"
-      <<: *ubuntu_trusty_base_job
-      <<: *env_py36
+    # - name: "Python 3.6.8 on Ubuntu 14.04 (using manylinux wheel)"
+    #   <<: *ubuntu_trusty_base_job
+    #   <<: *env_py36
 
-    - name: "Python 3.6.8 on Ubuntu 18.04 (using manylinux wheel)"
-      <<: *ubuntu_bionic_base_job
-      python: 3.6.8
-      <<: *env_py36
+    # - name: "Python 3.6.8 on Ubuntu 18.04 (using manylinux wheel)"
+    #   <<: *ubuntu_bionic_base_job
+    #   python: 3.6.8
+    #   <<: *env_py36
     
-    - name: "Python 3.7.4 on Ubuntu 18.04 (using manylinux wheel)"
-      <<: *ubuntu_bionic_base_job
-      python: 3.7.4
-      <<: *env_py37
+    # - name: "Python 3.7.4 on Ubuntu 18.04 (using manylinux wheel)"
+    #   <<: *ubuntu_bionic_base_job
+    #   python: 3.7.4
+    #   <<: *env_py37
 
 
 ################################################################################
