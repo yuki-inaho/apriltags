@@ -144,7 +144,7 @@ deploy_template: &deploy_template
   skip_cleanup: true
 
 before_deploy:
-  - brew install openssl@1.0.0
+  - rvm reinstall $(travis_internal_ruby)
 
 deploy:
   - provider: releases
