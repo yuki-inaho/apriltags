@@ -139,8 +139,8 @@ script:
 
 deploy_template: &deploy_template
   on:
-    tags: true
-    branch: master
+    # tags: true
+    branch: test-osx-deployment
   skip_cleanup: true
 
 deploy:
@@ -149,6 +149,7 @@ deploy:
     api_key: $GitHubOAUTH
     file_glob: true
     file: "./dist/pupil_apriltags*"
-  - provider: script
-    <<: *deploy_template
-    script: bash ./.travis/pypi_deploy.sh
+    draft: true
+  # - provider: script
+  #   <<: *deploy_template
+  #   script: bash ./.travis/pypi_deploy.sh
