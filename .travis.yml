@@ -143,11 +143,10 @@ deploy_template: &deploy_template
     branch: test-osx-deployment
   skip_cleanup: true
 
-before_deploy:
-  - rvm reinstall $(travis_internal_ruby)
-
 deploy:
   - provider: releases
+    on:
+      condition: os != osx
     <<: *deploy_template
     api_key: $GitHubOAUTH
     file_glob: true
