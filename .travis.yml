@@ -137,20 +137,16 @@ matrix:
 script:
   - tox --installpkg ./dist/pupil_apriltags*.whl
 
-deploy_template: &deploy_template
-  on:
-    # tags: true
-    branch: test-osx-deployment
-  skip_cleanup: true
-
 deploy:
   - provider: releases
     on:
       condition: os != osx
-    <<: *deploy_template
+      # tags: true
+      branch: test-osx-deployment
     api_key: $GitHubOAUTH
     file_glob: true
     file: "./dist/pupil_apriltags*"
+    skip_cleanup: true
     draft: true
   # - provider: script
   #   <<: *deploy_template
