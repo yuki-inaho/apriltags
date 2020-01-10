@@ -139,8 +139,8 @@ script:
 
 deploy:
   - provider: script
-    # on:
+    on:
+      branch: test-osx-deployment
     #   tags: true
-    #   branch: master
     skip_cleanup: true
     script: bash ./.travis/pypi_deploy.sh
