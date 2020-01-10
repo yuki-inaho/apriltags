@@ -137,10 +137,5 @@ matrix:
 script:
   - tox --installpkg ./dist/pupil_apriltags*.whl
 
-deploy:
-  - provider: script
-    on:
-      branch: test-osx-deployment
-    #   tags: true
-    skip_cleanup: true
-    script: bash ./.travis/pypi_deploy.sh
+after_success:
+  - bash ./.travis/pypi_deploy.sh
