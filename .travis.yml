@@ -103,9 +103,9 @@ matrix:
       <<: *osx_base_job
       <<: *env_py36
 
-    # - name: "Python 3.7.4 on OSX 10.12 (xcode8.3)"
-    #   <<: *osx_base_job
-    #   <<: *env_py37
+    - name: "Python 3.7.4 on OSX 10.12 (xcode8.3)"
+      <<: *osx_base_job
+      <<: *env_py37
 
     # - name: "Python 3.6.8 on Windows"
     #   <<: *win_base_job
@@ -138,16 +138,9 @@ script:
   - tox --installpkg ./dist/pupil_apriltags*.whl
 
 deploy:
-  - provider: releases
-    on:
-      condition: os != osx
-      # tags: true
-      branch: test-osx-deployment
-    api_key: $GitHubOAUTH
-    file_glob: true
-    file: "./dist/pupil_apriltags*"
+  - provider: script
+    # on:
+    #   tags: true
+    #   branch: master
     skip_cleanup: true
-    draft: true
-  # - provider: script
-  #   <<: *deploy_template
-  #   script: bash ./.travis/pypi_deploy.sh
+    script: bash ./.travis/pypi_deploy.sh
