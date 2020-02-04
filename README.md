@@ -36,7 +36,7 @@ You can of course clone the repository and build from there. For development you
 
 ```sh
 # clone the repository
-git clone https://github.com/pupil-labs/apriltags.git
+git clone --recursive https://github.com/pupil-labs/apriltags.git
 cd apriltags
 
 # install apriltags in editable mode with development requirements
