@@ -1,3 +1,4 @@
+import pathlib
 import pytest
 import cv2
 import time
@@ -21,7 +22,11 @@ def test_familiy(family, num_markers):
     t0 = time.perf_counter_ns()
     detector = pupil_apriltags.Detector(families=family)
     time_init = (time.perf_counter_ns() - t0) / 1_000_000
-    img = cv2.imread(f"images/{family}.png")
+    cwd = pathlib.Path(__file__).parent
+    img_path = cwd / "images" / f"{family}.png"
+    img = cv2.imread(str(img_path))
+    assert img is not None, f"Image not found at {img_path}"
+    assert img.size > 0
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     t0 = time.perf_counter_ns()
     markers = detector.detect(img)
