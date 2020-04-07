@@ -17,7 +17,6 @@ env_py37: &env_py37
     - TOXENV=py${PY_MM}
     - PATH=/c/Python${PY_MM}:/c/Python${PY_MM}/Scripts:$PATH
 
-
 ################################################################################
 # OS JOB TEMPLATES
 ################################################################################
@@ -87,7 +86,6 @@ ubuntu_bionic_base_job: &ubuntu_bionic_base_job
   before_script:
     - pip3 install -U pip
     - pip3 install tox
-  
 
 ################################################################################
 # DEFINE JOB MATRIX
@@ -106,7 +104,7 @@ matrix:
     - name: "Python 3.6.8 on Windows"
       <<: *win_base_job
       <<: *env_py36
-    
+
     - name: "Python 3.7.4 on Windows"
       <<: *win_base_job
       <<: *env_py37
@@ -119,12 +117,11 @@ matrix:
       <<: *ubuntu_bionic_base_job
       python: 3.6.8
       <<: *env_py36
-    
+
     - name: "Python 3.7.4 on Ubuntu 18.04 (using manylinux wheel)"
       <<: *ubuntu_bionic_base_job
       python: 3.7.4
       <<: *env_py37
-
 
 ################################################################################
 # RUN AND DEPLOY (OS INDEPENDENT)
