@@ -17,14 +17,13 @@ env_py37: &env_py37
     - TOXENV=py${PY_MM}
     - PATH=/c/Python${PY_MM}:/c/Python${PY_MM}/Scripts:$PATH
 
-
 ################################################################################
 # OS JOB TEMPLATES
 ################################################################################
 
 osx_base_job: &osx_base_job
   os: osx
-  osx_image: xcode8.3
+  osx_image: xcode10.1
   language: sh
   before_install:
     - brew upgrade pyenv
@@ -87,7 +86,6 @@ ubuntu_bionic_base_job: &ubuntu_bionic_base_job
   before_script:
     - pip3 install -U pip
     - pip3 install tox
-  
 
 ################################################################################
 # DEFINE JOB MATRIX
@@ -95,18 +93,18 @@ ubuntu_bionic_base_job: &ubuntu_bionic_base_job
 
 matrix:
   include:
-    - name: "Python 3.6.8 on OSX 10.12 (xcode8.3)"
+    - name: "Python 3.6.8 on OSX 10.13 (xcode10.1)"
       <<: *osx_base_job
       <<: *env_py36
 
-    - name: "Python 3.7.4 on OSX 10.12 (xcode8.3)"
+    - name: "Python 3.7.4 on OSX 10.13 (xcode10.1)"
       <<: *osx_base_job
       <<: *env_py37
 
     - name: "Python 3.6.8 on Windows"
       <<: *win_base_job
       <<: *env_py36
-    
+
     - name: "Python 3.7.4 on Windows"
       <<: *win_base_job
       <<: *env_py37
@@ -119,12 +117,11 @@ matrix:
       <<: *ubuntu_bionic_base_job
       python: 3.6.8
       <<: *env_py36
-    
+
     - name: "Python 3.7.4 on Ubuntu 18.04 (using manylinux wheel)"
       <<: *ubuntu_bionic_base_job
       python: 3.7.4
       <<: *env_py37
-
 
 ################################################################################
 # RUN AND DEPLOY (OS INDEPENDENT)
