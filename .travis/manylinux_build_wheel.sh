@@ -5,8 +5,8 @@ echo "Running manylinux_build_wheel for python" $1
 export PATH=/opt/python/cp"$1"-cp"$1"m/bin:$PATH
 
 cd /io
-pip install -U pip
-pip install build
+python -m pip install -U pip
+python -m pip install build
 python -m build .
 
 for whl in /io/dist/*.whl; do
