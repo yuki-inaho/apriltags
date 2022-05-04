@@ -319,6 +319,12 @@ class Detector(object):
             self.libc.apriltag_detector_add_family_bits(
                 self.tag_detector_ptr, self.tag_families["tag36h11"], 2
             )
+        elif "tag36h11_kalibr" in self.params["families"]:
+            self.libc.tag36h11_kalibr_create.restype = ctypes.POINTER(_ApriltagFamily)
+            self.tag_families["tag36h11_kalibr"] = self.libc.tag36h11_kalibr_create()
+            self.libc.apriltag_detector_add_family_bits(
+                self.tag_detector_ptr, self.tag_families["tag36h11_kalibr"], 2
+            )
         elif "tagCircle21h7" in self.params["families"]:
             self.libc.tagCircle21h7_create.restype = ctypes.POINTER(_ApriltagFamily)
             self.tag_families["tagCircle21h7"] = self.libc.tagCircle21h7_create()
@@ -377,6 +383,9 @@ class Detector(object):
                 elif "tag36h11" == family:
                     self.libc.tag36h11_destroy.restype = None
                     self.libc.tag36h11_destroy(tf)
+                elif "tag36h11_kalibr" == family:
+                    self.libc.tag36h11_kalibr_destroy.restype = None
+                    self.libc.tag36h11_kalibr_destroy(tf)
                 elif "tagCircle21h7" == family:
                     self.libc.tagCircle21h7_destroy.restype = None
                     self.libc.tagCircle21h7_destroy(tf)
